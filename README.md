@@ -140,12 +140,5 @@ This app helps people live smarter, waste less, and feel more connected with the
 
 - **Jean Paul Iradukunda**  
   Developer & Project Manager  
-  - Implements responsive designs and interactive features.  
 
 ---
-
-## License & Contact
-
-© 2025 ShareHub – Neighbourhood Resource Sharing App  
-[GitHub Repository](https://github.com/sharehub)  
-[Contact Us](ikundajp@gmail.com)

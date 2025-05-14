@@ -1,46 +1,541 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="An app for sharing resources with your neighbors">
-    <title>Neighborhood Resource Sharing App</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neighbourhood Resource Sharing App</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Neighborhood Resource Sharing App</h1>
-            <nav>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-share-alt"></i>
+      <span>Neighbourhood Resource Sharing App</span>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="#introduction" class="nav-link">Home</a></li>
+      <li><a href="#progress" class="nav-link">Project Progress</a></li>
+      <li><a href="#milestones" class="nav-link">Milestones</a></li>
+      <li><a href="#team" class="nav-link">Team</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Neighbourhood Resource Sharing App</h1>
+    <p>A modern platform to share resources, save money and build stronger communities</p>
+    <a href="#introduction" class="btn">Learn More</a>
+  </section>
+
+  <!-- 1. Introduction -->
+  <section id="introduction" class="container">
+    <div class="section-title">
+      <h2>Introduction</h2>
+    </div>
+    <div class="card">
+      <p>
+        The Neighborhood Resource Sharing App is a community-based platform designed to help local residents lend, borrow, and request everyday items from one another. Instead of buying tools, furniture, or household items that are only needed occasionally, users can easily find and borrow them from nearby neighbors—building trust, saving money, and reducing waste.
+      </p>
+    </div>
+  </section>
+
+  <!-- Why This App Matters -->
+  <section id="why-matters" class="container">
+    <div class="section-title">
+      <h2>Why This App Matters</h2>
+    </div>
+    <div class="card">
+      <div class="examples-grid">
+        <div class="example-card">
+          <div class="example-icon"><i class="fas fa-tools"></i></div>
+          <h3>Example 1</h3>
+          <p>You need a drill for 5 minutes — don't buy it. Borrow it.</p>
+        </div>
+        
+        <div class="example-card">
+          <div class="example-icon"><i class="fas fa-table"></i></div>
+          <h3>Example 2</h3>
+          <p>You bought a party table but only use it once a year. Let others borrow it!</p>
+        </div>
+        
+        <div class="example-card">
+          <div class="example-icon"><i class="fas fa-spray-can"></i></div>
+          <h3>Example 3</h3>
+          <p>You moved into a new place and need cleaning tools — get them from your neighbor.</p>
+        </div>
+      </div>
+      <p class="highlight-text">This app helps people live smarter, waste less, and feel more connected with their community.</p>
+    </div>
+  </section>
+
+  <!-- 2. Project Objectives -->
+  <section id="objectives" class="container">
+    <div class="section-title">
+      <h2>Project Objectives</h2>
+    </div>
+    <div class="card">
+      <ul class="objectives-list">
+        <li><i class="fas fa-check-circle"></i> <strong>Facilitate Item Sharing:</strong> Allow neighbors to list and find items available to borrow.</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Reduce Waste:</strong> Encourage reuse rather than constant buying.</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Build Local Trust:</strong> Promote a helpful and engaged local community.</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Provide a Clean Interface:</strong> Design a user-friendly platform that works well on all devices.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. Core Features -->
+  <section id="features" class="container">
+    <div class="section-title">
+      <h2>Core Features</h2>
+    </div>
+    <div class="card">
+      <div class="features-grid">
+        <div class="feature-category">
+          <h3><i class="fas fa-user-circle"></i> User Management</h3>
+          <ul>
+            <li><strong>Registration &amp; Login:</strong> Users can create accounts with name, email, password, and location.</li>
+            <li><strong>Profile Page:</strong> Users view/edit their info and items they're sharing.</li>
+            <li><strong>Admin Role:</strong> Admins can moderate users, items, and reviews.</li>
+          </ul>
+        </div>
+        
+        <div class="feature-category">
+          <h3><i class="fas fa-box-open"></i> Item Management</h3>
+          <ul>
+            <li><strong>Add Item:</strong> Users can add items with title, category, image, and availability.</li>
+            <li><strong>Search/Browse:</strong> Filter by category, location, availability.</li>
+            <li><strong>Item Details:</strong> View description, photo, owner info, and borrow options.</li>
+          </ul>
+        </div>
+        
+        <div class="feature-category">
+          <h3><i class="fas fa-comments"></i> Borrowing System</h3>
+          <ul>
+            <li><strong>Request to Borrow:</strong> Send custom messages and date ranges.</li>
+            <li><strong>Borrow History:</strong> View past lends and borrows.</li>
+          </ul>
+        </div>
+        
+        <div class="feature-category">
+          <h3><i class="fas fa-envelope"></i> Messaging System</h3>
+          <ul>
+            <li><strong>Chat:</strong> Coordinate pickups and ask questions.</li>
+          </ul>
+        </div>
+        
+        <div class="feature-category">
+          <h3><i class="fas fa-star"></i> Reviews &amp; Ratings</h3>
+          <ul>
+            <li><strong>Leave Reviews:</strong> Rate and review transactions.</li>
+            <li><strong>Trust System:</strong> Build credibility through feedback.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Required Forms and Data -->
+  <section id="forms" class="container">
+    <div class="section-title">
+      <h2>Required Forms and Data</h2>
+    </div>
+    <div class="card">
+      <p>Each form is simple and easy to fill in. Here's what they collect:</p>
+      
+      <div class="table-responsive">
+        <table class="forms-table">
+          <thead>
+            <tr>
+              <th>Form Name</th>
+              <th>Fields</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sign Up Form</td>
+              <td>Name, Email, Password</td>
+            </tr>
+            <tr>
+              <td>Login Form</td>
+              <td>Email, Password</td>
+            </tr>
+            <tr>
+              <td>Add Item</td>
+              <td>Title, Description, Photo Upload, Category, Available Dates</td>
+            </tr>
+            <tr>
+              <td>Search Bar</td>
+              <td>Keyword, Category Filter, Location Filter</td>
+            </tr>
+            <tr>
+              <td>Borrow Request</td>
+              <td>Message, Requested Dates</td>
+            </tr>
+            <tr>
+              <td>Edit Profile</td>
+              <td>Name, Photo, Email, Location</td>
+            </tr>
+            <tr>
+              <td>Review Form</td>
+              <td>Star Rating, Short Comment</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Application Workflow -->
+  <section id="workflow" class="container">
+    <div class="section-title">
+      <h2>Application Workflow</h2>
+    </div>
+    <div class="card">
+      <div class="workflow-steps">
+        <div class="workflow-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>Register/Login</h4>
+            <p>New users sign up; returning users log in.</p>
+          </div>
+        </div>
+        
+        <div class="workflow-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>Dashboard</h4>
+            <p>Users view available items in their area.</p>
+          </div>
+        </div>
+        
+        <div class="workflow-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>Add Item</h4>
+            <p>Lenders upload items to share.</p>
+          </div>
+        </div>
+        
+        <div class="workflow-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4>Request to Borrow</h4>
+            <p>Borrowers contact owners.</p>
+          </div>
+        </div>
+        
+        <div class="workflow-step">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h4>In-App Chat</h4>
+            <p>Coordinate pickup details.</p>
+          </div>
+        </div>
+        
+        <div class="workflow-step">
+          <div class="step-number">6</div>
+          <div class="step-content">
+            <h4>Review</h4>
+            <p>Borrower leaves feedback post-return.</p>
+          </div>
+        </div>
+        
+        <div class="workflow-step">
+          <div class="step-number">7</div>
+          <div class="step-content">
+            <h4>Admin Moderation</h4>
+            <p>Admins manage users and content.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 5. Database Structure -->
+<section id="database" class="container">
+  <div class="section-title">
+    <h2>Database Structure</h2>
+  </div>
+  <div class="card">
+    <p><i class="fas fa-database"></i> <strong>Tables &amp; Relationships</strong></p>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr><th>Table</th><th>Fields</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Users</td>
+            <td>UserID (PK), UserName, Email, Password, Role, Location, CreatedAt</td>
+          </tr>
+          <tr>
+            <td>Items</td>
+            <td>ItemID (PK), OwnerID (FK), Title, Description, Category, PhotoPath, Available, CreatedAt</td>
+          </tr>
+          <tr>
+            <td>BorrowRequests</td>
+            <td>RequestID (PK), ItemID (FK), BorrowerID (FK), Message, Status, RequestedDate</td>
+          </tr>
+          <tr>
+            <td>Messages</td>
+            <td>MessageID (PK), SenderID (FK), ReceiverID (FK), Content, SentAt</td>
+          </tr>
+          <tr>
+            <td>Reviews</td>
+            <td>ReviewID (PK), FromUserID (FK), ToUserID (FK), Rating, Comment, CreatedAt, RequestID (FK)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="relationship-list">
+      <li><i class="fas fa-link"></i> 1 User → many Items, Messages, Reviews</li>
+      <li><i class="fas fa-link"></i> 1 Item → many BorrowRequests</li>
+      <li><i class="fas fa-link"></i> BorrowRequest links Borrower and Item</li>
+      <li><i class="fas fa-link"></i> Message links Sender and Receiver</li>
+      <li><i class="fas fa-link"></i> Review links two Users and optionally a BorrowRequest</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 6. ERD -->
+<section id="erd" class="container">
+  <div class="section-title">
+    <h2>ERD (Entity Relationship Diagram)</h2>
+  </div>
+  <div class="card">
+    <p><i class="fas fa-project-diagram"></i> A diagram showing connections between Users, Items, BorrowRequests, Messages, Reviews.</p>
+    <div class="placeholder-image">
+      <div class="image-placeholder">
+        <img src="images/erd.png" alt="ERD Diagram" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. UML -->
+<section id="erd" class="container">
+  <div class="section-title">
+    <h2>UML (Unified Modeling Language Diagram)</h2>
+  </div>
+  <div class="card">
+    <p><i class="fas fa-project-diagram"></i> A UML class diagram illustrating the relationships between Users, Items, BorrowRequests, Messages, and Reviews.</p>
+    <div class="placeholder-image">
+      <div class="image-placeholder">
+        <img src="images/uml.png" alt="ERD Diagram" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- 7. Wireframes -->
+  <section id="wireframes" class="container">
+    <div class="section-title">
+      <h2>Wireframes</h2>
+    </div>
+    <div class="card">
+      <p><i class="fas fa-pencil-ruler"></i> Minimal wireframes for each form:</p>
+      <div class="wireframes-grid">
+        <div class="wireframe-item">
+          <div class="wireframe-icon">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <span>Login</span>
+        </div>
+        <div class="wireframe-item">
+          <div class="wireframe-icon">
+            <i class="fas fa-user-check"></i>
+          </div>
+          <span>Register</span>
+        </div>
+        <div class="wireframe-item">
+          <div class="wireframe-icon">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+          <span>Dashboard</span>
+        </div>
+        <div class="wireframe-item">
+          <div class="wireframe-icon">
+            <i class="fas fa-plus-circle"></i>
+          </div>
+          <span>Add Item</span>
+        </div>
+        <div class="wireframe-item">
+          <div class="wireframe-icon">
+            <i class="fas fa-info-circle"></i>
+          </div>
+          <span>Item Details</span>
+        </div>
+        <div class="wireframe-item">
+          <div class="wireframe-icon">
+            <i class="fas fa-hand-holding"></i>
+          </div>
+          <span>Borrow Request</span>
+        </div>
+        <div class="wireframe-item">
+          <div class="wireframe-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <span>Messages</span>
+        </div>
+        <div class="wireframe-item">
+          <div class="wireframe-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <span>Review</span>
+        </div>
+        <div class="wireframe-item">
+          <div class="wireframe-icon">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <span>Profile</span>
+        </div>
+        <div class="wireframe-item">
+          <div class="wireframe-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <span>Admin Panel</span>
+        </div>
+      </div>
+      <div class="placeholder-image">
+        <div class="image-placeholder">
+          <i class="fas fa-file-pdf"></i>
+          <p>Wireframes PDF</p>
+          <span>(Add PDF: images/wireframes.pdf)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Milestones Section -->
+  <section id="milestones" class="container">
+    <div class="section-title">
+      <h2>Milestones</h2>
+    </div>
+    <div class="card">
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot completed"></div>
+          <div class="timeline-content">
+            <h4>Forming groups</h4>
+            <p>Forming groups of 2</p>
+            <div class="timeline-date completed">Completed: March 11, 2025</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot completed"></div>
+          <div class="timeline-content">
+            <h4>Project Planning</h4>
+            <p>Research, requirements gathering, and concept development</p>
+            <div class="timeline-date completed">Completed: March 15, 2025</div>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot completed"></div>
+          <div class="timeline-content">
+            <h4>Team website</h4>
+            <p>Developing team website</p>
+            <div class="timeline-date completed">Completed: March 15, 2025</div>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot completed"></div>
+          <div class="timeline-content">
+            <h4>Project analysis</h4>
+            <p>Perform a thorough analysis covering:</p>
+            <ul>
+              <li>Project overview: what the application is and who it serves</li>
+              <li>Key features and user stories in detail</li>
+              <li>In-depth discussion of workflows and edge cases</li>
+              <li>Diagrams:
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="progress.html">Project Progress</a></li>
-                    <li><a href="milestones.html">Milestones</a></li>
-                    <li><a href="team.html">Team</a></li>
+                  <li>Entity–Relationship Diagram (ERD)</li>
+                  <li>UML overview (class diagram to follow later)</li>
                 </ul>
-            </nav>
+              </li>
+              <li>Wireframes: screen-by-screen mockups of the user interface</li>
+            </ul>
+            <div class="timeline-date completed">Completed: April 25, 2025</div>
+          </div>
         </div>
-    </header>
-
-    <main>
-        <div class="container">
-            <section class="project-overview">
-                <h2>Project Overview</h2>
-                <p>
-                    The Neighbourhood Resource Sharing App is designed to help local communities share resources efficiently. The platform allows users to lend, borrow, and request items such as tools, books, appliances, and other essentials.
-                <p>
-                    For example, instead of buying a power drill you'll only use once, you can borrow one from a neighbor. Hosting visitors but don’t have an extra mattress? Just get one through the app. Need a glass cutter or gardening tools to clean your yard? A neighbor might already have exactly what you need. The app helps you save money, reduce waste, and build stronger, more helpful communities.
-                </p>
-            </section>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot in-progress"></div>
+          <div class="timeline-content">
+            <h4>Development - Core Features</h4>
+            <p>User authentication, item management, and borrowing & lending system</p>
+            <div class="timeline-date in-progress">In progress: Due May 31, 2025</div>
+          </div>
         </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>Developed by Jean Paul</p>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Testing Phase</h4>
+            <p>Bug fixing, performance testing, and security review</p>
+            <div class="timeline-date">Planned: May 25, 2025</div>
+          </div>
         </div>
-    </footer>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Project submitiom</h4>
+            <p>Submitting the project</p>
+            <div class="timeline-date">Planned: May 31, 2025</div>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Project demonstration</h4>
+            <p>Project demonstration to the teachers</p>
+            <div class="timeline-date">Planned: June 03, 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- Team Section -->
+  <section id="team" class="container">
+    <div class="section-title">
+      <h2>Team</h2>
+    </div>
+    <div class="card">
+      <div class="team-grid">     
+        <div class="team-member">
+          <div class="member-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <h3>Jean Paul Iradukunda</h3>
+          <p class="member-role">Developer and Project Manager</p>
+          <p class="member-description">Implements responsive designs and interactive features.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>© 2025 ShareHub – Neighbourhood Resource Sharing App</p>
+      <div class="footer-links">
+        <a href="#"><i class="fab fa-github"></i> GitHub</a>
+        <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="#"><i class="fas fa-info-circle"></i> About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
 </body>
 </html>

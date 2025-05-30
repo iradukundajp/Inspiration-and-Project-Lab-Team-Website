@@ -384,8 +384,12 @@
   
   .forms-table th:first-child,
   .forms-table td:first-child {
-    width: 40%;
+    width: 30%;
     font-weight: 500;
+  }
+
+  .forms-table td:first-child {
+    color: var(--primary);
   }
   
   /* Progress Bars */
@@ -439,6 +443,73 @@
     margin-top: 0.25rem;
   }
   
+  /* Database Structure Styling */
+  .database-table {
+    font-size: 0.9rem;
+  }
+
+  .database-table td:first-child {
+    font-weight: 600;
+    color: var(--primary);
+    width: 20%;
+    vertical-align: top;
+  }
+
+  .database-table td:nth-child(2) {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    width: 80%;
+    vertical-align: top;
+  }
+
+  .database-table code {
+    background-color: var(--bg-light);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-weight: 500;
+    color: var(--primary);
+  }
+
+  .database-relationships {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border);
+  }
+
+  .database-relationships h4 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  /* ERD and UML Details */
+  .erd-details, .uml-details {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border);
+  }
+  
+  .erd-details h4, .uml-details h4 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .erd-details h4::before {
+    content: '🔗';
+    font-size: 1.2rem;
+  }
+  
+  .uml-details h4::before {
+    content: '📐';
+    font-size: 1.2rem;
+  }
+
   /* Relationship List */
   .relationship-list {
     list-style: none;
@@ -455,6 +526,15 @@
   .relationship-list li i {
     color: var(--secondary);
     margin-right: var(--spacing-sm);
+  }
+
+  /* Fix spacing around strong tags in relationship list */
+  .relationship-list strong {
+    margin: 0 0.25rem;
+  }
+
+  .relationship-list li i + strong {
+    margin-left: 0;
   }
   
   /* Features Grid */
@@ -579,25 +659,23 @@
   padding: var(--spacing-xl);
   text-align: center;
   width: 100%;
-  max-width: 500px;
-}
-
-/* ERD */
-/* Image placeholders */
-.placeholder-image {
-  display: flex;
-  justify-content: center;
-  margin: var(--spacing-md) 0;
-}
-
-.image-placeholder {
-  background-color: var(--bg-light);
-  border: 2px dashed var(--border);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-xl);
-  text-align: center;
-  width: 100%;
   max-width: 1000px; 
+}
+
+/* Special styling for UML diagram - make it larger */
+.image-placeholder.uml-diagram {
+  max-width: 1400px;
+  padding: var(--spacing-md);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow);
+  background-color: var(--bg-white);
+}
+
+.image-placeholder.uml-diagram:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+  box-shadow: var(--shadow-lg);
 }
 
 .image-placeholder img {
@@ -623,8 +701,92 @@
   font-size: 0.85rem;
 }
 
+/* Core Classes Grid for UML - Replaced with compact list */
+.core-classes-list {
+  list-style: none;
+  margin-left: 0;
+  margin-top: var(--spacing-lg);
+}
 
-  /* Wireframes Grid */
+.core-classes-list li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-xs) 0;
+}
+
+.core-classes-list li i {
+  color: var(--primary);
+  margin-right: var(--spacing-sm);
+  margin-top: 0.2rem;
+  font-size: 1rem;
+  width: 1.2rem;
+  flex-shrink: 0;
+}
+
+.core-classes-list strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.core-classes-list li:hover {
+  background-color: var(--bg-light);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  margin-left: calc(-1 * var(--spacing-sm));
+  margin-right: calc(-1 * var(--spacing-sm));
+}
+
+  /* Wireframes Section */
+  .wireframe-category {
+    margin-bottom: var(--spacing-xxl);
+  }
+  
+  .wireframe-category h3 {
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--border);
+  }
+  
+  .wireframe-category h3 i {
+    color: var(--primary-light);
+  }
+  
+  .wireframe-image {
+    background-color: var(--bg-light);
+    border: 2px solid var(--border);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: var(--transition);
+  }
+  
+  .wireframe-image:hover {
+    border-color: var(--primary-light);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+  
+  .wireframe-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .wireframe-caption {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 0;
+  }
+  
+  /* Old wireframes grid - keep for backward compatibility */
   .wireframes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -894,6 +1056,56 @@
     .wireframes-grid {
       grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     }
+    
+    /* Wireframe categories responsive */
+    .wireframe-category {
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .wireframe-image {
+      padding: var(--spacing-md);
+    }
+    
+    .wireframe-category h3 {
+      font-size: 1.1rem;
+      flex-direction: column;
+      text-align: center;
+      gap: var(--spacing-xs);
+    }
+
+    /* Core classes list responsive */
+    .core-classes-list li {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .core-classes-list li i {
+      font-size: 0.9rem;
+      width: 1rem;
+    }
+
+    /* Database table responsive */
+    .database-table {
+      font-size: 0.8rem;
+    }
+
+    .database-table td:first-child {
+      width: 25%;
+    }
+
+    .database-table td:nth-child(2) {
+      width: 75%;
+      font-size: 0.75rem;
+    }
+
+    /* UML diagram responsive */
+    .image-placeholder.uml-diagram {
+      max-width: 100%;
+      padding: var(--spacing-sm);
+    }
+
+    .image-placeholder.uml-diagram:hover {
+      transform: none;
+    }
   }
   
   @media screen and (max-width: 480px) {
@@ -929,6 +1141,39 @@
     .footer-links {
       flex-direction: column;
       gap: var(--spacing-md);
+    }
+
+    .wireframe-category h3 {
+      font-size: 1rem;
+    }
+    
+    .wireframe-image {
+      padding: var(--spacing-sm);
+    }
+
+    /* Core classes list - extra small screens */
+    .core-classes-list li {
+      margin-bottom: var(--spacing-xs);
+      font-size: 0.85rem;
+    }
+
+    .core-classes-list li i {
+      font-size: 0.8rem;
+      width: 0.9rem;
+    }
+
+    /* Database table - extra small screens */
+    .database-table {
+      font-size: 0.75rem;
+    }
+
+    .database-table td:nth-child(2) {
+      font-size: 0.7rem;
+    }
+
+    .database-table code {
+      padding: 0.1rem 0.2rem;
+      font-size: 0.7rem;
     }
   }
   

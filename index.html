@@ -142,7 +142,7 @@
       <h2>Required Forms and Data</h2>
     </div>
     <div class="card">
-      <p>Each form is simple and easy to fill in. Here's what they collect:</p>
+      <p>Each form is simple and easy to fill in. Here's what they collect based on our wireframe designs:</p>
       
       <div class="table-responsive">
         <table class="forms-table">
@@ -154,32 +154,36 @@
           </thead>
           <tbody>
             <tr>
-              <td>Sign Up Form</td>
-              <td>Name, Email, Password</td>
+              <td><strong>Sign Up Form</strong></td>
+              <td>Full Name, Email, Location, Password, Confirm Password, Terms & Privacy Agreement</td>
             </tr>
             <tr>
-              <td>Login Form</td>
-              <td>Email, Password</td>
+              <td><strong>Login Form</strong></td>
+              <td>Email, Password, Forgot Password Link</td>
             </tr>
             <tr>
-              <td>Add Item</td>
-              <td>Title, Description, Photo Upload, Category, Available Dates</td>
+              <td><strong>Add Item Form</strong></td>
+              <td>Resource Name, Category, Description, Photo Upload/Remove, Available for Lending Checkbox</td>
             </tr>
             <tr>
-              <td>Search Bar</td>
-              <td>Keyword, Category Filter, Location Filter</td>
+              <td><strong>Borrow Request Form</strong></td>
+              <td>Select Item to Borrow, Borrow Date, Return Date, Request Details Message</td>
             </tr>
             <tr>
-              <td>Borrow Request</td>
-              <td>Message, Requested Dates</td>
+              <td><strong>Search & Filter</strong></td>
+              <td>Keyword Search, Category Filter, Location Filter, Item Availability</td>
             </tr>
             <tr>
-              <td>Edit Profile</td>
-              <td>Name, Photo, Email, Location</td>
+              <td><strong>Messages Form</strong></td>
+              <td>Contact Search, Message Content, Send/Receive Chat Interface</td>
             </tr>
             <tr>
-              <td>Review Form</td>
-              <td>Star Rating, Short Comment</td>
+              <td><strong>Review Form</strong></td>
+              <td>User Selection (Who to Review), Star Rating (1-5), Comment Text</td>
+            </tr>
+            <tr>
+              <td><strong>Admin Dashboard</strong></td>
+              <td>User Management, Item Oversight, Request Monitoring, System Statistics</td>
             </tr>
           </tbody>
         </table>
@@ -253,50 +257,115 @@
     </div>
   </section>
 
-
   <!-- 5. Database Structure -->
 <section id="database" class="container">
   <div class="section-title">
     <h2>Database Structure</h2>
   </div>
   <div class="card">
-    <p><i class="fas fa-database"></i> <strong>Tables &amp; Relationships</strong></p>
+    <p><i class="fas fa-database"></i> <strong>ShareHub Database Schema - Complete Table Structure</strong></p>
     <div class="table-responsive">
-      <table>
+      <table class="database-table">
         <thead>
-          <tr><th>Table</th><th>Fields</th></tr>
+          <tr><th>Table</th><th>Fields & Data Types</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>Users</td>
-            <td>UserID (PK), UserName, Email, Password, Role, Location, CreatedAt</td>
+            <td><strong>Users</strong></td>
+            <td>
+              <code>UserID</code> INT (PK, AUTO_INCREMENT)<br>
+              <code>Name</code> VARCHAR(100) NOT NULL<br>
+              <code>Email</code> VARCHAR(255) UNIQUE NOT NULL<br>
+              <code>Password</code> VARCHAR(255) NOT NULL<br>
+              <code>Role</code> ENUM('user', 'admin') DEFAULT 'user'<br>
+              <code>Location</code> VARCHAR(200)<br>
+              <code>DateRegistered</code> DATETIME DEFAULT CURRENT_TIMESTAMP<br>
+              <code>IsActive</code> BOOLEAN DEFAULT TRUE
+            </td>
           </tr>
           <tr>
-            <td>Items</td>
-            <td>ItemID (PK), OwnerID (FK), Title, Description, Category, PhotoPath, Available, CreatedAt</td>
+            <td><strong>Items</strong></td>
+            <td>
+              <code>ItemID</code> INT (PK, AUTO_INCREMENT)<br>
+              <code>OwnerID</code> INT NOT NULL (FK → Users.UserID)<br>
+              <code>Name</code> VARCHAR(200) NOT NULL<br>
+              <code>Description</code> TEXT<br>
+              <code>Category</code> VARCHAR(50)<br>
+              <code>Photo</code> LONGBLOB<br>
+              <code>IsAvailable</code> BOOLEAN DEFAULT TRUE<br>
+              <code>DateAdded</code> DATETIME DEFAULT CURRENT_TIMESTAMP
+            </td>
           </tr>
           <tr>
-            <td>BorrowRequests</td>
-            <td>RequestID (PK), ItemID (FK), BorrowerID (FK), Message, Status, RequestedDate</td>
+            <td><strong>BorrowRequests</strong></td>
+            <td>
+              <code>RequestID</code> INT (PK, AUTO_INCREMENT)<br>
+              <code>ItemID</code> INT NOT NULL (FK → Items.ItemID)<br>
+              <code>RequesterID</code> INT NOT NULL (FK → Users.UserID)<br>
+              <code>Status</code> ENUM('pending', 'approved', 'denied', 'completed', 'cancelled') DEFAULT 'pending'<br>
+              <code>RequestDate</code> DATETIME DEFAULT CURRENT_TIMESTAMP<br>
+              <code>BorrowDate</code> DATE NOT NULL<br>
+              <code>ReturnDate</code> DATE NOT NULL<br>
+              <code>Message</code> TEXT
+            </td>
           </tr>
           <tr>
-            <td>Messages</td>
-            <td>MessageID (PK), SenderID (FK), ReceiverID (FK), Content, SentAt</td>
+            <td><strong>Messages</strong></td>
+            <td>
+              <code>MessageID</code> INT (PK, AUTO_INCREMENT)<br>
+              <code>SenderID</code> INT NOT NULL (FK → Users.UserID)<br>
+              <code>ReceiverID</code> INT NOT NULL (FK → Users.UserID)<br>
+              <code>Content</code> TEXT NOT NULL<br>
+              <code>SentDate</code> DATETIME DEFAULT CURRENT_TIMESTAMP<br>
+              <code>IsRead</code> BOOLEAN DEFAULT FALSE<br>
+              <code>IsDeleted</code> BOOLEAN DEFAULT FALSE<br>
+              <code>IsFlagged</code> BOOLEAN DEFAULT FALSE
+            </td>
           </tr>
           <tr>
-            <td>Reviews</td>
-            <td>ReviewID (PK), FromUserID (FK), ToUserID (FK), Rating, Comment, CreatedAt, RequestID (FK)</td>
+            <td><strong>Reviews</strong></td>
+            <td>
+              <code>ReviewID</code> INT (PK, AUTO_INCREMENT)<br>
+              <code>FromUserID</code> INT NOT NULL (FK → Users.UserID)<br>
+              <code>ToUserID</code> INT NOT NULL (FK → Users.UserID)<br>
+              <code>RequestID</code> INT (FK → BorrowRequests.RequestID)<br>
+              <code>Rating</code> INT CHECK (Rating >= 1 AND Rating <= 5)<br>
+              <code>Comment</code> TEXT<br>
+              <code>ReviewDate</code> DATETIME DEFAULT CURRENT_TIMESTAMP<br>
+              <code>IsFlagged</code> BOOLEAN DEFAULT FALSE<br>
+              <code>IsVisible</code> BOOLEAN DEFAULT TRUE
+            </td>
+          </tr>
+          <tr>
+            <td><strong>SystemLogs</strong></td>
+            <td>
+              <code>LogID</code> INT (PK, AUTO_INCREMENT)<br>
+              <code>UserID</code> INT (FK → Users.UserID)<br>
+              <code>Action</code> VARCHAR(100) NOT NULL<br>
+              <code>Details</code> TEXT<br>
+              <code>LogDate</code> DATETIME DEFAULT CURRENT_TIMESTAMP<br>
+              <code>IPAddress</code> VARCHAR(45)<br>
+              <code>Severity</code> ENUM('Info', 'Warning', 'Error', 'Critical') DEFAULT 'Info'
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <ul class="relationship-list">
-      <li><i class="fas fa-link"></i> 1 User → many Items, Messages, Reviews</li>
-      <li><i class="fas fa-link"></i> 1 Item → many BorrowRequests</li>
-      <li><i class="fas fa-link"></i> BorrowRequest links Borrower and Item</li>
-      <li><i class="fas fa-link"></i> Message links Sender and Receiver</li>
-      <li><i class="fas fa-link"></i> Review links two Users and optionally a BorrowRequest</li>
-    </ul>
+    
+    <div class="database-relationships">
+      <h4><i class="fas fa-sitemap"></i> Database Relationships</h4>
+      <ul class="relationship-list">
+        <li><i class="fas fa-link"></i> <strong>Users</strong> (1) → (Many) <strong>Items</strong> via OwnerID</li>
+        <li><i class="fas fa-link"></i> <strong>Users</strong> (1) → (Many) <strong>BorrowRequests</strong> via RequesterID</li>
+        <li><i class="fas fa-link"></i> <strong>Items</strong> (1) → (Many) <strong>BorrowRequests</strong> via ItemID</li>
+        <li><i class="fas fa-link"></i> <strong>Users</strong> (1) → (Many) <strong>Messages</strong> as Sender via SenderID</li>
+        <li><i class="fas fa-link"></i> <strong>Users</strong> (1) → (Many) <strong>Messages</strong> as Receiver via ReceiverID</li>
+        <li><i class="fas fa-link"></i> <strong>Users</strong> (1) → (Many) <strong>Reviews</strong> as FromUser via FromUserID</li>
+        <li><i class="fas fa-link"></i> <strong>Users</strong> (1) → (Many) <strong>Reviews</strong> as ToUser via ToUserID</li>
+        <li><i class="fas fa-link"></i> <strong>BorrowRequests</strong> (1) → (Many) <strong>Reviews</strong> via RequestID</li>
+        <li><i class="fas fa-link"></i> <strong>Users</strong> (1) → (Many) <strong>SystemLogs</strong> via UserID</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -306,105 +375,114 @@
     <h2>ERD (Entity Relationship Diagram)</h2>
   </div>
   <div class="card">
-    <p><i class="fas fa-project-diagram"></i> A diagram showing connections between Users, Items, BorrowRequests, Messages, Reviews.</p>
+    <p><i class="fas fa-project-diagram"></i> A comprehensive diagram showing connections between Users, Items, BorrowRequests, Messages, Reviews, and SystemLogs.</p>
     <div class="placeholder-image">
       <div class="image-placeholder">
         <img src="images/ShareHub-ERD.png" alt="ERD Diagram" />
       </div>
     </div>
-  </div>
-</section>
-
-<!-- 7. UML -->
-<section id="erd" class="container">
-  <div class="section-title">
-    <h2>UML (Unified Modeling Language Diagram)</h2>
-  </div>
-  <div class="card">
-    <p><i class="fas fa-project-diagram"></i> A UML class diagram illustrating the relationships between Users, Items, BorrowRequests, Messages, and Reviews.</p>
-    <div class="placeholder-image">
-      <div class="image-placeholder">
-        <img src="images/ShareHUB-UML.PNG" alt="UML Diagram" />
-      </div>
+    <div class="erd-details">
+      <h4>Key Relationships:</h4>
+      <ul class="relationship-list">
+        <li><i class="fas fa-link"></i>&nbsp;<strong>Users</strong>&nbsp;can own multiple&nbsp;<strong>Items</strong>&nbsp;and make multiple&nbsp;<strong>BorrowRequests</strong></li>
+        <li><i class="fas fa-link"></i>&nbsp;<strong>Items</strong>&nbsp;can have multiple&nbsp;<strong>BorrowRequests</strong>&nbsp;from different users</li>
+        <li><i class="fas fa-link"></i>&nbsp;<strong>Messages</strong>&nbsp;connect users for communication about items and requests</li>
+        <li><i class="fas fa-link"></i>&nbsp;<strong>Reviews</strong>&nbsp;are linked to completed transactions between users</li>
+        <li><i class="fas fa-link"></i>&nbsp;<strong>SystemLogs</strong>&nbsp;track all user activities for monitoring and debugging</li>
+      </ul>
     </div>
   </div>
 </section>
 
+<!-- 7. UML -->
+<section id="uml" class="container">
+  <div class="section-title">
+    <h2>UML (Unified Modeling Language Diagram)</h2>
+  </div>
+  <div class="card">
+    <p><i class="fas fa-project-diagram"></i> A UML class diagram illustrating the relationships, methods, and properties of core system classes.</p>
+    <div class="placeholder-image">
+      <div class="image-placeholder uml-diagram">
+        <img src="images/ShareHUB-UML.PNG" alt="UML Diagram" />
+      </div>
+    </div>
+    <div class="uml-details">
+      <h4>Core Classes Include:</h4>
+      <ul class="core-classes-list">
+        <li><i class="fas fa-user"></i><strong>User Class:</strong>&nbsp;Manages user credentials, profile, and authentication</li>
+        <li><i class="fas fa-box"></i><strong>Item Class:</strong>&nbsp;Handles resource details, availability, and categories</li>
+        <li><i class="fas fa-handshake"></i><strong>BorrowRequest Class:</strong>&nbsp;Manages borrowing transactions and status</li>
+        <li><i class="fas fa-envelope"></i><strong>Message Class:</strong>&nbsp;Facilitates communication between users</li>
+        <li><i class="fas fa-star"></i><strong>Review Class:</strong>&nbsp;Handles ratings and feedback system</li>
+        <li><i class="fas fa-cogs"></i><strong>SystemLog Class:</strong>&nbsp;Tracks all user activities for monitoring and debugging</li>
+        <li><i class="fas fa-users-cog"></i><strong>UserManager Class:</strong>&nbsp;Handles user registration, authentication, and profile management</li>
+        <li><i class="fas fa-database"></i><strong>DataManager Class:</strong>&nbsp;Manages database connections and data validation</li>
+        <li><i class="fas fa-layer-group"></i><strong>DBConnection Class:</strong>&nbsp;Handles database connectivity and connection pooling</li>
+        <li><i class="fas fa-tools"></i><strong>AppUtilities Class:</strong>&nbsp;Provides common utility functions and validation methods</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-  <!-- 7. Wireframes -->
+  <!-- 8. Wireframes -->
   <section id="wireframes" class="container">
     <div class="section-title">
       <h2>Wireframes</h2>
     </div>
     <div class="card">
-      <p><i class="fas fa-pencil-ruler"></i> Minimal wireframes for each form:</p>
-      <div class="wireframes-grid">
-        <div class="wireframe-item">
-          <div class="wireframe-icon">
-            <i class="fas fa-user-plus"></i>
-          </div>
-          <span>Login</span>
-        </div>
-        <div class="wireframe-item">
-          <div class="wireframe-icon">
-            <i class="fas fa-user-check"></i>
-          </div>
-          <span>Register</span>
-        </div>
-        <div class="wireframe-item">
-          <div class="wireframe-icon">
-            <i class="fas fa-tachometer-alt"></i>
-          </div>
-          <span>Dashboard</span>
-        </div>
-        <div class="wireframe-item">
-          <div class="wireframe-icon">
-            <i class="fas fa-plus-circle"></i>
-          </div>
-          <span>Add Item</span>
-        </div>
-        <div class="wireframe-item">
-          <div class="wireframe-icon">
-            <i class="fas fa-info-circle"></i>
-          </div>
-          <span>Item Details</span>
-        </div>
-        <div class="wireframe-item">
-          <div class="wireframe-icon">
-            <i class="fas fa-hand-holding"></i>
-          </div>
-          <span>Borrow Request</span>
-        </div>
-        <div class="wireframe-item">
-          <div class="wireframe-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <span>Messages</span>
-        </div>
-        <div class="wireframe-item">
-          <div class="wireframe-icon">
-            <i class="fas fa-star"></i>
-          </div>
-          <span>Review</span>
-        </div>
-        <div class="wireframe-item">
-          <div class="wireframe-icon">
-            <i class="fas fa-user-circle"></i>
-          </div>
-          <span>Profile</span>
-        </div>
-        <div class="wireframe-item">
-          <div class="wireframe-icon">
-            <i class="fas fa-cogs"></i>
-          </div>
-          <span>Admin Panel</span>
+      <p><i class="fas fa-pencil-ruler"></i> Detailed wireframes for each form and interface:</p>
+      
+      <!-- Authentication Forms -->
+      <div class="wireframe-category">
+        <h3><i class="fas fa-sign-in-alt"></i> Authentication Forms</h3>
+        <div class="wireframe-image">
+          <img src="images/login&signUp.PNG" alt="Login and Signup Forms Wireframes" />
+          <p class="wireframe-caption">Login and Registration Forms</p>
         </div>
       </div>
-      <div class="placeholder-image">
-        <div class="image-placeholder">
-          <i class="fas fa-file-pdf"></i>
-          <p>Wireframes PDF</p>
-          <span>(Add PDF: images/wireframes.pdf)</span>
+
+      <!-- Dashboard -->
+      <div class="wireframe-category">
+        <h3><i class="fas fa-tachometer-alt"></i> User Dashboard</h3>
+        <div class="wireframe-image">
+          <img src="images/MainForm.PNG" alt="User Dashboard Wireframe" />
+          <p class="wireframe-caption">Main User Dashboard with Stats and Recent Activity</p>
+        </div>
+      </div>
+
+      <!-- Item and Request Management -->
+      <div class="wireframe-category">
+        <h3><i class="fas fa-box-open"></i> Item & Request Management</h3>
+        <div class="wireframe-image">
+          <img src="images/borrowRequest&itemForm.PNG" alt="Item Form and Borrow Request Wireframes" />
+          <p class="wireframe-caption">Add New Item Form and Borrow Request Form</p>
+        </div>
+      </div>
+
+      <!-- Communication -->
+      <div class="wireframe-category">
+        <h3><i class="fas fa-comments"></i> Communication & Reviews</h3>
+        <div class="wireframe-image">
+          <img src="images/Message&ReviewForm.PNG" alt="Messages and Review Forms Wireframes" />
+          <p class="wireframe-caption">Messaging System and Review Forms</p>
+        </div>
+      </div>
+
+      <!-- Admin Panel -->
+      <div class="wireframe-category">
+        <h3><i class="fas fa-cogs"></i> Admin Panel</h3>
+        <div class="wireframe-image">
+          <img src="images/Admin.PNG" alt="Admin Panel Wireframe" />
+          <p class="wireframe-caption">Administrative Dashboard for System Management</p>
+        </div>
+      </div>
+
+      <!-- Data Management -->
+      <div class="wireframe-category">
+        <h3><i class="fas fa-database"></i> Data Management Views</h3>
+        <div class="wireframe-image">
+          <img src="images/User&RequestManagement.PNG" alt="Data Management Wireframes" />
+          <p class="wireframe-caption">User Management and Request Management Interfaces</p>
         </div>
       </div>
     </div>
@@ -489,7 +567,7 @@
           <div class="timeline-content">
             <h4>Project submitiom</h4>
             <p>Submitting the project</p>
-            <div class="timeline-date">Planned: May 31, 2025</div>
+            <div class="timeline-date">Planned: May 30, 2025</div>
           </div>
         </div>
         
@@ -498,7 +576,7 @@
           <div class="timeline-content">
             <h4>Project demonstration</h4>
             <p>Project demonstration to the teachers</p>
-            <div class="timeline-date">Planned: June 03, 2025</div>
+            <div class="timeline-date">Planned: June 05, 2025</div>
           </div>
         </div>
       </div>
@@ -511,14 +589,14 @@
       <h2>Team</h2>
     </div>
     <div class="card">
-      <div class="team-grid">     
-        <div class="team-member">
-          <div class="member-avatar">
-            <i class="fas fa-user"></i>
+      <div class="team-info">
+        <div class="team-member-simple">
+          <i class="fas fa-user-tie"></i>
+          <div class="member-details">
+            <h4>Jean Paul Iradukunda</h4>
+            <span class="role">Developer and Project Manager</span>
+            <p>Led end-to-end project management and development</p>
           </div>
-          <h3>Jean Paul Iradukunda</h3>
-          <p class="member-role">Developer and Project Manager</p>
-          <p class="member-description">Led end-to-end project management and development,</p>
         </div>
       </div>
     </div>
